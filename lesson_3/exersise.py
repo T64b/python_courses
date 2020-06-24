@@ -11,7 +11,7 @@ def repeat(repeats):
             for i in range(repeats):
                 start_time = time.time()
                 print(func(number_of_elements))
-                print(f'function name: {func.__name__}, time:' 
+                print(f'function name: {func.__name__}, time:'
                       f' {time.time() - start_time} in seconds')
 
         return wrapper
@@ -19,12 +19,12 @@ def repeat(repeats):
     return decorator
 
 
-@repeat(30)
+@repeat(5)
 def get_sum(number_of_elements):
-    summary = []
+    numbers = []
     for i in range(number_of_elements):
-        summary.append(random.randint(0, 1000))
-    return summary, sum(summary)
+        numbers.append(random.randint(0, 1000))
+    return numbers, sum(numbers)
 
 
 get_sum(5)
