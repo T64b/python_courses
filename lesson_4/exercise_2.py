@@ -18,11 +18,16 @@ reg_users = []
 auth_users = []
 
 
-def check_valid_pass(password):
-    if re.fullmatch(r'[A-Za-z0-9@#$%^&+=]{6,}', password):
-        return True
+def validate_pass(password):
+    if len(password) < 8:
+        print("Make sure your password is at lest 8 letters")
+    elif re.search('[0-9]', password) is None:
+        print("Make sure your password has a number in it")
+    elif re.search('[A-Z]', password) is None:
+        print("Make sure your password has a capital letter in it")
     else:
-        return False
+        print("Your password seems fine")
+        return True
 
 
 def find_login(login):
@@ -42,7 +47,7 @@ def check_login():
         if find_login(log_in):
             print('This log in is used, please try again')
             continue
-        if not check_valid_pass(secret):
+        if not validate_pass(secret):
             print('Not valid password, please try again')
         else:
             return log_in, secret, confirm_pass
@@ -162,9 +167,9 @@ class Authorization(Registration):
 
 
 if __name__ == '__main__':
-    reg_users = [User('u1', 'pass', '123131', False),
-                 User('u2', 'pass', '123131', False),
-                 User('admin', 'pass', '123131', True)]
+    reg_users = [User('user1', 'password1', '123131', False),
+                 User('user2', 'password2', '123131', False),
+                 User('admin', 'password', '123131', True)]
     while True:
         command = input('enter command (auth, reg)')
 
